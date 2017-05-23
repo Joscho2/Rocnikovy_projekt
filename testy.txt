@@ -1,0 +1,24 @@
+4 Z5
+0 1 2
+3 0 0
+1 2 1
+3 2 1
+
+4 Z2xZ2
+0 1 0x0
+1 2 0x0
+2 3 0x0
+3 0 0x0
+1 3 0x0
+
+5 Z5xZ2xZ8
+0 1 1x1x7
+0 3 0x0x0
+0 4 3x1x3
+
+
+//Tento už pri riešení hrubou silou chvíľu potrvá (~sekundy)
+5 Z5xZ2xZ8
+0 1 1x1x7
+0 3 0x0x0
+0 4 3x1x3

@@ -16,9 +16,9 @@ Prvok::Prvok(Grupa z, string s)
 	int toin;
 	s += "x";
 	while ((pos = s.find("x")) != string::npos) {
-	
+
 		string pom = s.substr(0, pos);
-		
+
 		stringstream ss;
 	 	ss<<pom;
 	 	ss>> toin;
@@ -28,7 +28,7 @@ Prvok::Prvok(Grupa z, string s)
 		s.erase(0, pos + 1);
 	}
 	assert(getG().getZ().size() == x.size());
-	
+
 	/*cout<< "Vytvoril som zo stringu: ";
 	for(int i = 0; i < x.size(); i++){
 		cout<< x[i] << " ";
@@ -44,7 +44,7 @@ Prvok::Prvok(Grupa z, vector<int> a)
 	for(int i = 0; i < a.size(); i++){
 		x.push_back(evaluate(a[i], i));
 	}
-	
+
 	/*cout<< "Vytvoril som z vectora: ";
 	for(int i = 0; i < x.size(); i++){
 		cout<< x[i] << " ";
@@ -75,7 +75,7 @@ void Prvok::operator-=(Prvok &p2) {
 	}
 }
 
-bool Prvok::operator!=(Prvok &p2) {
+bool Prvok::operator!=(const Prvok &p2) const {
 	if(getX().size() != p2.getX().size()) return true;
 	for(int i = 0; i < getX().size(); i++) if(getX()[i] != p2.getX()[i]){
 		return true;

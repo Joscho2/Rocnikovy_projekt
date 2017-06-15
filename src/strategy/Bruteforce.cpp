@@ -1,4 +1,5 @@
 #include "../../include/strategy/Bruteforce.h"
+#include "../../include/Iterator.h"
 #include <assert.h>
 #include <iostream>
 
@@ -8,14 +9,14 @@ Bruteforce::Bruteforce(vector<hrana> hrany, Grupa grupa, int pocet_vrcholov)
 :Algoritmus(hrany, grupa, pocet_vrcholov){}
 
 bool Bruteforce::kontrola(){
-	
+
     vector<Prvok> vrchol;
 
     Prvok nullPrvok = Prvok::getZero(grupa);
     for(int i = 0; i < pocet_vrcholov; i++){
         vrchol.push_back(nullPrvok);
     }
-    
+
     for(int i = 0; i < hrany.size(); i++){
         vrchol[hrany[i].zaciatok]-= hrany[i].prvok; //Vychádzajúca hrana, odčítame jej hodnotu
         vrchol[hrany[i].koniec]+= hrany[i].prvok; //Vchádzajúca hrana, pripočítavame jej hodnotu
@@ -29,33 +30,43 @@ bool Bruteforce::kontrola(){
 }
 
 void Bruteforce::woodCut(int index){
-	    if(index == hrany.size()) {
-        if(kontrola()){
-            cout<< "Nájdený tok [z, do, ohodnotenie]: "<<endl;
-            for(int i = 0; i < hrany.size(); i++){
-                cout<< "[" << hrany[i].zaciatok << ", "
-                    << hrany[i].koniec << ", ";
-                for(int j : hrany[i].prvok.getX()) cout<< j << "x";
-                cout<< "\b"  << "]" << endl;
-            }
-            exit(0);
-        }
-    } else {
-        for(Prvok::Iterator it = Prvok::getIt(grupa); it.hasNext(); it.next()){
-        	Prvok tempPrvok = it.get();
-        	if(tempPrvok != hrany[index].zakazana_hodnota){
-        		hrany[index].prvok = tempPrvok;
-                woodCut(index + 1);
-        	}
-        }
-    }
-} 
+	if(index == hrany.size()) {
 
-bool Bruteforce::find(){
-	woodCut(0);
-	return false;
+	    if(kontrola()){
+			najdene = true;
+	    }
+
+    } else {
+		if(!najdene){
+	        for(Iterator it(grupa); it.hasNext(); it.next()){
+	        	Prvok tempPrvok = it.get();
+	        	if(tempPrvok != hrany[index].zakazana_hodnota){
+	        		hrany[index].prvok = tempPrvok;
+	                woodCut(index + 1);
+	        	}
+	        }
+		}
+    }
 }
 
+bool Bruteforce::find(){
+	return find(true);
+}
 
+bool Bruteforce::find(bool skoncit){
+	woodCut(0);
 
+	if(skoncit && najdene){
+		cout<< "Nájdený tok [z, do, ohodnotenie]: "<<endl;
+		for(int i = 0; i < hrany.size(); i++){
+			cout<< "[" << hrany[i].zaciatok << ", "
+				<< hrany[i].koniec << ", ";
+			for(int j : hrany[i].prvok.getX()) cout<< j << "x";
+			cout<< "\b"  << "]" << endl;
+		}
+		exit(0);
 
+	}
+
+	return najdene;
+}

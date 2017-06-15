@@ -15,10 +15,10 @@ Grupa::Grupa(string s) {
 	int toin;
 	s += "x";
 	while ((pos = s.find("x")) != string::npos) {
-	
+
 		string pom = s.substr(0, pos);
 		pom.erase(0, 1); //Odrežeme "Z"
-		
+
 		stringstream ss;
 	 	ss<<pom;
 	 	ss>> toin;
@@ -26,8 +26,8 @@ Grupa::Grupa(string s) {
 
 		s.erase(0, pos + 1);
 	}
-	
-	
+
+
 	/*cout<< "Grupa: ";
 	for(int i = 0; i < z.size(); i++){
 		cout << z[i] << " ";

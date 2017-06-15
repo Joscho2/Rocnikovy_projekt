@@ -1,10 +1,9 @@
-#ifndef PRVOK_H
-#define PRVOK_H
 #include <vector>
 #include <string>
 #include "Grupa.h"
 
-
+#ifndef PRVOK_H
+#define PRVOK_H
 
 using namespace std;
 
@@ -27,20 +26,6 @@ class Prvok
 
         string getString(); //Pomocná metóda, vhodná na debugovanie, vracajúca textovú reprezentáciu prvku
 
-        class Iterator{ //Iterátor na prechádzanie prvkov grupy, je vytváraný static metódou getIt()
-			public:
-				Iterator(Grupa g);
-				bool hasNext();
-				void next();
-				Prvok get();
-			private:
-				void count(vector<int> a, int pos);
-				int index;
-				vector<vector<int>>  temp;
-				Grupa g;
-		};
-
-		static Iterator getIt(Grupa g);
 
     private:
         int evaluate(const int e, const int index) const; //Získavanie "správnych"/"základných" hodnôt podľa grupy

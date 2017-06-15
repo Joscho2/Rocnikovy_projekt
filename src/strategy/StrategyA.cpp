@@ -1,4 +1,5 @@
 #include "../../include/strategy/StrategyA.h"
+#include "../../include/strategy/Bruteforce.h"
 
 #include <set>
 #include <iostream>
@@ -26,23 +27,38 @@ bool StrategyA::find(){
 
 	int index = 0; //index aktuálne spracovávanej hrany
 
+	vector<hrana> novy_graf; //Vytvoríme si graf, ktorý bude v relácií
+							//ekvivalencie s naším
+
 	//Pokiaľ môžem pridať vrchol
 	while(index < hrany.size()){
 		if(find(hrany[index].zaciatok) != find(hrany[index].koniec)){
 			//Spájame komponenty
 			unionm(hrany[index].zaciatok, hrany[index].koniec);
 
+			//Do nového grafu pridáme hranou s rovnakou hodnotou
+			//ako v pôvodnom grafe
+			novy_graf.push_back(hrany[index]);
+
 		} else {
-			//Túto hranu už nepotrebujeme, spájala by vrcholy ktoré sú už
-			//v kostre. Je teda mimo kostry, potrebujeme overiť, či je
-			//zakázaná hodnota nulová.
-			if(hrany[index].zakazana_hodnota != Prvok::getZero(grupa)){
-				return false;
-			}
+			//Hrane mimo kostry priradíme hodnotu 0
+			hrana h {
+						hrany[index].zaciatok,
+						hrany[index].koniec,
+						Prvok::getZero(grupa), //zakazana hodnota
+						Prvok::getZero(grupa) //nejake ohodnotenie
+					};
+
+			//A pridáme ju do nového grafu
+			novy_graf.push_back(h);
 		}
 		index++;
 	}
-	return true;
+
+	//Máme vytvorený graf, ideme skúsiť nájsť v ňom tok
+	Bruteforce algoritmus(hrany, grupa, pocet_vrcholov);
+
+	return algoritmus.find(false);
 }
 
 

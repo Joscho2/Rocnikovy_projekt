@@ -8,12 +8,15 @@ class Bruteforce: public Algoritmus {
 	public:
 		Bruteforce(std::vector<hrana> hrany, Grupa grupa, int pocet_vrcholov);
 		bool find();
+		bool find(bool skoncit); //Či skončiť po nájdení (namiesto vrátenie TRUE)
 	private:
 		bool kontrola();//Funkcia kontrola zisťuje, či je ohodnotenie hrán správne. Správne zanemená,
 						//že súčet ohodnotení vchádzajúich a vychádzajúcich hrán pre každý vrchol je rovný nule
-						
+
 		void woodCut(int index);//Backtrack procedúra skúšajúca všetky ohodnotenia vrcholov,
 		                        //prvé nájdené ohodnotenie spĺňajúce zadanie vypíše a skončí program
+
+		bool najdene = false;
 };
 
 #endif //BRUTEFORCE_H

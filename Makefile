@@ -12,7 +12,7 @@ compile: main.cpp src/Prvok.cpp
 	g++ -std=c++11 Prvok.o Grupa.o Iterator.o Algoritmus.o Bruteforce.o StrategyA.o main.o -o app
 
 clean:
-	rm -f main.o Prvok.o Grupa.o Algoritmus.o Bruteforce.o StrategyA.o
+	rm -f main.o Prvok.o Grupa.o Algoritmus.o Bruteforce.o StrategyA.o Iterator.o
 
 compandrun: compile clean run
 

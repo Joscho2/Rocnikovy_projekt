@@ -22,3 +22,30 @@
 0 1 1x1x7
 0 3 0x0x0
 0 4 3x1x3
+
+//Záťažový test pre 1-zak funkciu
+11 Z5
+0 1 4
+1 2 4
+2 3 1
+4 2 0
+4 3 3
+5 4 4
+3 5 1
+3 6 4
+7 3 3
+6 7 4
+7 8 1
+8 9 1
+5 10 3
+
+//Záťažový test pre 3-zak funkciu
+7 Z5xZ3xZ5
+0 2 4x0x4
+0 3 2x1x0
+2 1 3x2x2
+1 3 0x0x0
+3 4 2x1x1
+1 5 0x0x1
+5 6 0x0x0
+4 6 3x1x3

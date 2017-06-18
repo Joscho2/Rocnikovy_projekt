@@ -43,6 +43,7 @@ void Bruteforce::woodCut(int index){
 	        	if(tempPrvok != hrany[index].zakazana_hodnota){
 	        		hrany[index].prvok = tempPrvok;
 	                woodCut(index + 1);
+                    if(najdene) break;
 	        	}
 	        }
 		}

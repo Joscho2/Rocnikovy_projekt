@@ -16,7 +16,7 @@ class Bruteforce: public Algoritmus {
 		void woodCut(int index);//Backtrack procedúra skúšajúca všetky ohodnotenia vrcholov,
 		                        //prvé nájdené ohodnotenie spĺňajúce zadanie vypíše a skončí program
 
-		bool najdene = false;
+		bool najdene;
 };
 
 #endif //BRUTEFORCE_H

@@ -55,7 +55,8 @@ bool Bruteforce::find(){
 }
 
 bool Bruteforce::find(bool skoncit){
-	woodCut(0);
+    najdene = false;
+    woodCut(0);
 
 	if(skoncit && najdene){
 		cout<< "Nájdený tok [z, do, ohodnotenie]: "<<endl;

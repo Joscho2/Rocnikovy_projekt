@@ -6,7 +6,7 @@
 
 /**
  * Stratégia, ktorá overí, či je vôbec možné hrany ohodnotiť tak aby bol
- * výsledný tok v grafe nulový. Funguje len pre 1-zakazujúce funkcie.
+ * výsledný tok v grafe nulový. Funguje len pre grupy v tvare Zn.
  */
 
 StrategyA::StrategyA(vector<hrana> hrany, Grupa grupa, int pocet_vrcholov)
@@ -17,9 +17,9 @@ StrategyA::StrategyA(vector<hrana> hrany, Grupa grupa, int pocet_vrcholov)
 
 bool StrategyA::find(){
 
-	//Funguje to len pre 1-zakazujúce funkcie !
+	//Funguje to len pre grupy v tvare Zn !
 	if(grupa.getZ().size() != 1){
-		cout<< "Túto metódu je možné použiť len na 1-zakazujúce funkcie!"<<endl;
+		cout<< "Túto metódu je možné použiť len pre grupy v tvare Zn!"<<endl;
 		exit(0);
 	}
 
@@ -56,7 +56,7 @@ bool StrategyA::find(){
 	}
 
 	//Máme vytvorený graf, ideme skúsiť nájsť v ňom tok
-	Bruteforce algoritmus(hrany, grupa, pocet_vrcholov);
+	Bruteforce algoritmus(novy_graf, grupa, pocet_vrcholov);
 
 	return algoritmus.find(false);
 }
